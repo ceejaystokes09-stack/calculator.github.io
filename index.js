@@ -1,12 +1,46 @@
 const visual = document.querySelector(".input-screen p")
 let math_str = ""; 
+
+document.addEventListener("keydown",(e)=>{
+    const key = e.key;
+
+    if (/^[0-9.]$/.test(key) || ["+", "-", "/", "%"].includes(key)) {
+        e.preventDefault();
+        math(key);
+    } else if (key === "*" || key.toLowerCase() === "x") {
+        e.preventDefault();
+        math("*", "X");
+    } else if (key === "Enter" || key === "=") {
+        e.preventDefault();
+        math("=");
+    } else if (key === "Backspace") {
+        e.preventDefault();
+        math("m");
+    } else if (key === "Escape") {
+        e.preventDefault();
+        math("AC");
+    } else if (["c", "C", "n", "N"].includes(key)) {
+        e.preventDefault();
+        math("c");
+    }
+})
+
 function math(method_type, visual_type){
     const types = {
         AC: ()=>{visual.textContent="0";
             math_str = ""; 
         },
-        m: ()=>{//minus the last thing in the text content
-            },
+        m: ()=>{
+            if (math_str) {
+                math_str = math_str.slice(0, -1);
+                visual.textContent = math_str.replaceAll("*", "X") || "0";
+                return;
+            }
+
+            if (visual.textContent !== "0" && visual.textContent !== "Math error") {
+                visual.textContent = visual.textContent.slice(0, -1) || "0";
+            }
+        },
         "=": ()=>{
             try {
                 const result = eval(math_str);
