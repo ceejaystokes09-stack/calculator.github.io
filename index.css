@@ -1,0 +1,145 @@
+:root {
+    color-scheme: dark;
+    --page-bg: #101217;
+    --surface: #1b1e25;
+    --screen: #14161c;
+    --number: #2b2f38;
+    --number-hover: #3a3f4b;
+    --utility: #5b6270;
+    --accent: #ff9f43;
+    --accent-hover: #ffb866;
+    --text: #f7f8fb;
+    --muted-text: #aeb4c0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100svh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    background:
+        radial-gradient(circle at 15% 10%, rgba(255, 159, 67, 0.13), transparent 28%),
+        radial-gradient(circle at 90% 90%, rgba(91, 98, 112, 0.18), transparent 30%),
+        var(--page-bg);
+    color: var(--text);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.input-screen,
+.input-bttns {
+    width: min(100%, 24rem);
+}
+
+.input-screen {
+    min-height: clamp(7rem, 22vh, 11rem);
+    padding: clamp(1.25rem, 5vw, 2rem);
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    overflow: hidden;
+    border-radius: 1.5rem 1.5rem 0 0;
+    background: var(--screen);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
+}
+
+.input-screen p {
+    max-width: 100%;
+    margin: 0;
+    overflow: hidden;
+    color: var(--text);
+    font-size: clamp(2.25rem, 10vw, 4rem);
+    font-weight: 600;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.input-bttns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.55rem, 2vw, 0.85rem);
+    padding: clamp(1rem, 4vw, 1.5rem);
+    border-radius: 0 0 1.5rem 1.5rem;
+    background: var(--surface);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
+}
+
+button {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 0;
+    border-radius: 50%;
+    background: var(--number);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: clamp(1rem, 4vw, 1.35rem);
+    font-weight: 600;
+    transition: background-color 160ms ease, transform 160ms ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:hover {
+    background: var(--number-hover);
+    transform: translateY(-2px);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--accent-hover);
+    outline-offset: 3px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.btt-important {
+    background: var(--accent);
+    color: #24170c;
+}
+
+.btt-important:hover {
+    background: var(--accent-hover);
+}
+
+.bttn-top {
+    background: var(--utility);
+}
+
+@media (hover: none) {
+    button:hover {
+        transform: none;
+    }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+    body {
+        padding: 0.75rem;
+    }
+
+    .input-screen,
+    .input-bttns {
+        width: min(24rem, 62vh);
+    }
+
+    .input-screen {
+        min-height: 3.25rem;
+        padding: 0.75rem;
+    }
+
+    .input-screen p {
+        font-size: 1.5rem;
+    }
+
+    .input-bttns {
+        gap: 0.35rem;
+        padding: 0.5rem;
+    }
+}
